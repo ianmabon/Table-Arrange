@@ -38,6 +38,8 @@ func main() {
 		rand.Seed(time.Now().UnixNano())
 		//random table number
 		var table = rand.Intn(33)
+		//table + 1
+		table++
 
 		var name = line[0] + " " + line[1]
 		person = append(person, name)
@@ -48,10 +50,12 @@ func main() {
 			tableFill[table]++
 		} else {
 			//else, add the integer assigned to the table to the usedTables slice.
-			tableFill[table]++
+			// tableFill[table]++
 			fmt.Println(line[0], line[1], table)
 			usedTables = append(usedTables, table)
 		}
+		fmt.Println(tableFill)
+		fmt.Println(usedTables)
 	}
 }
 
