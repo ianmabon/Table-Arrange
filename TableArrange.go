@@ -20,7 +20,7 @@ type Person struct {
 func main() {
 	//Elliot's code modified
 	//empty tables
-	tableFill := []int{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+	tableFill := []int{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 	usedTables := []int{}
 
 	var person []string
@@ -37,27 +37,45 @@ func main() {
 		//random seed
 		rand.Seed(time.Now().UnixNano())
 		//random table number
-		var table = rand.Intn(33)
+		var table = rand.Intn(30)
 		//table + 1
 		table++
 
 		var name = line[0] + " " + line[1]
 		person = append(person, name)
 
-		//if the table is full, next table
-		if tableFill[table] < 8 {
-			fmt.Println(name, table)
-			tableFill[table]++
+		if table == 29 {
+			//if the group is full, next table
+			if tableFill[table] < 31 {
+				fmt.Println(name, "KC")
+				tableFill[table]++
+			} else {
+				//else, add the integer assigned to the table to the usedTables slice.
+				fmt.Println(name, "KC")
+				usedTables = append(usedTables, table)
+			}
+		} else if table == 30 {
+			//if the group is full, next table
+			if tableFill[table] < 30 {
+				fmt.Println(name, "Waiter")
+				tableFill[table]++
+			} else {
+				//else, add the integer assigned to the table to the usedTables slice.
+				fmt.Println(name, "Waiter")
+				usedTables = append(usedTables, table)
+			}
 		} else {
-			//else, add the integer assigned to the table to the usedTables slice.
-			// tableFill[table]++
-			fmt.Println(line[0], line[1], table)
-			usedTables = append(usedTables, table)
+			if tableFill[table] < 8 {
+				fmt.Println(name, table)
+				tableFill[table]++
+			} else {
+				//else, add the integer assigned to the table to the usedTables slice.
+				// tableFill[table]++
+				fmt.Println(name, table)
+				usedTables = append(usedTables, table)
+			}
 		}
-		fmt.Println(tableFill)
-		fmt.Println(usedTables)
+		// fmt.Println(tableFill)
+		// fmt.Println(usedTables)
 	}
 }
-
-//two print statements?????
-//random tables, but no kitchen crew or waiters
