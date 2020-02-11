@@ -63,6 +63,7 @@ func main() {
 				//if Table 1 = Table 2, then reshuffle
 				if person[studentNum].Table[0] == person[studentNum].Table2[0] {
 					person[studentNum].Table2 = append(person[studentNum].Table2, rand.Intn(33))
+					person[studentNum].Table2 = append(person[studentNum].Table2[:0], person[studentNum].Table2[1:]...)
 					fmt.Println(person[studentNum], "KC")
 					tableFill[table]++
 				} else {
@@ -73,6 +74,7 @@ func main() {
 				//if Table 1 = Table 2, then reshuffle
 				if person[studentNum].Table[0] == person[studentNum].Table2[0] {
 					person[studentNum].Table2 = append(person[studentNum].Table2, rand.Intn(33))
+					person[studentNum].Table2 = append(person[studentNum].Table2[:0], person[studentNum].Table2[1:]...)
 					fmt.Println(person[studentNum], "KC")
 					tableFill[table]++
 				} else {
@@ -86,6 +88,7 @@ func main() {
 				//if Table 1 = Table 2, then reshuffle
 				if person[studentNum].Table[0] == person[studentNum].Table2[0] {
 					person[studentNum].Table2 = append(person[studentNum].Table2, rand.Intn(33))
+					person[studentNum].Table2 = append(person[studentNum].Table2[:0], person[studentNum].Table2[1:]...)
 					fmt.Println(person[studentNum], "Waiter")
 					tableFill[table]++
 				} else {
@@ -97,6 +100,7 @@ func main() {
 				//if Table 1 = Table 2, then reshuffle
 				if person[studentNum].Table[0] == person[studentNum].Table2[0] {
 					person[studentNum].Table2 = append(person[studentNum].Table2, rand.Intn(33))
+					person[studentNum].Table2 = append(person[studentNum].Table2[:0], person[studentNum].Table2[1:]...)
 					fmt.Println(person[studentNum], "Waiter")
 					tableFill[table]++
 				} else {
@@ -110,6 +114,7 @@ func main() {
 				//if Table 1 = Table 2, then reshuffle
 				if person[studentNum].Table[0] == person[studentNum].Table2[0] {
 					person[studentNum].Table2 = append(person[studentNum].Table2, rand.Intn(33))
+					person[studentNum].Table2 = append(person[studentNum].Table2[:0], person[studentNum].Table2[1:]...)
 					fmt.Println(person[studentNum])
 					tableFill[table]++
 				} else {
@@ -122,6 +127,7 @@ func main() {
 				//if Table 1 = Table 2, then reshuffle
 				if person[studentNum].Table[0] == person[studentNum].Table2[0] {
 					person[studentNum].Table2 = append(person[studentNum].Table2, rand.Intn(33))
+					person[studentNum].Table2 = append(person[studentNum].Table2[:0], person[studentNum].Table2[1:]...)
 					fmt.Println(person[studentNum])
 					tableFill[table]++
 				} else {
