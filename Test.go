@@ -107,7 +107,7 @@ func main() {
 				if person[studentNum].Table[0] == person[studentNum].Table2[0] {
 					person[studentNum].Table2 = append(person[studentNum].Table2, rand.Intn(33))
 					person[studentNum].Table2 = append(person[studentNum].Table2[:0], person[studentNum].Table2[1:]...)
-					fmt.Println(person[studentNum])
+					fmt.Println(person[studentNum], "Waiter")
 					tableFill[table]++
 				} else {
 					fmt.Println(person[studentNum], "Waiter")
