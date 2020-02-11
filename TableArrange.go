@@ -16,10 +16,11 @@ func main() {
 		Firstname string
 		Lastname  string
 		Table     []int
+		Table2    []int
 	}
 	//Elliot's code modified
 	//empty tables
-	tableFill := []int{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+	tableFill := []int{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 	//used table array
 	usedTables := []int{}
 	//defined person
@@ -45,46 +46,91 @@ func main() {
 
 	for studentNum, student := range person {
 		//random table number
-		var table = rand.Intn(30)
-		// table = append(table, Person.Table)
+		var table = rand.Intn(33)
+		var table2 = rand.Intn(33)
 		//table + 1
 		table++
+		table2++
 		person[studentNum].Table = append(person[studentNum].Table, table)
-
-		if table == 29 {
+		person[studentNum].Table2 = append(person[studentNum].Table2, table2)
+		//never runs just used to declare student
+		if table == 34 {
+			fmt.Println(student)
+		}
+		if table == 32 {
 			//if the group is full, next table
 			if tableFill[table] < 7 {
-				fmt.Println(student, "KC")
-				tableFill[table]++
+				//if Table 1 = Table 2, then reshuffle
+				if person[studentNum].Table[0] == person[studentNum].Table2[0] {
+					person[studentNum].Table2 = append(person[studentNum].Table2, rand.Intn(33))
+					fmt.Println(person[studentNum], "KC")
+					tableFill[table]++
+				} else {
+					fmt.Println(person[studentNum], "KC")
+					tableFill[table]++
+				}
 			} else {
-				//else, add the integer assigned to the table to the usedTables slice.
-				fmt.Println(student, "KC")
-				usedTables = append(usedTables, table)
+				//if Table 1 = Table 2, then reshuffle
+				if person[studentNum].Table[0] == person[studentNum].Table2[0] {
+					person[studentNum].Table2 = append(person[studentNum].Table2, rand.Intn(33))
+					fmt.Println(person[studentNum], "KC")
+					tableFill[table]++
+				} else {
+					fmt.Println(person[studentNum], "KC")
+					usedTables = append(usedTables, table)
+				}
 			}
-		} else if table == 30 {
+		} else if table == 33 {
 			//if the group is full, next table
 			if tableFill[table] < 30 {
-				fmt.Println(student, "Waiter")
-				tableFill[table]++
+				//if Table 1 = Table 2, then reshuffle
+				if person[studentNum].Table[0] == person[studentNum].Table2[0] {
+					person[studentNum].Table2 = append(person[studentNum].Table2, rand.Intn(33))
+					fmt.Println(person[studentNum], "Waiter")
+					tableFill[table]++
+				} else {
+					fmt.Println(person[studentNum], "Waiter")
+					tableFill[table]++
+				}
 			} else {
 				//else, add the integer assigned to the table to the usedTables slice.
-				fmt.Println(student, "Waiter")
-				usedTables = append(usedTables, table)
+				//if Table 1 = Table 2, then reshuffle
+				if person[studentNum].Table[0] == person[studentNum].Table2[0] {
+					person[studentNum].Table2 = append(person[studentNum].Table2, rand.Intn(33))
+					fmt.Println(person[studentNum], "Waiter")
+					tableFill[table]++
+				} else {
+					fmt.Println(person[studentNum], "Waiter")
+					usedTables = append(usedTables, table)
+				}
 			}
 		} else {
 			if tableFill[table] < 8 {
 				//if the table is full, next table
-				fmt.Println(student, person[studentNum].Table)
-				tableFill[table]++
+				//if Table 1 = Table 2, then reshuffle
+				if person[studentNum].Table[0] == person[studentNum].Table2[0] {
+					person[studentNum].Table2 = append(person[studentNum].Table2, rand.Intn(33))
+					fmt.Println(person[studentNum])
+					tableFill[table]++
+				} else {
+					fmt.Println(person[studentNum])
+					tableFill[table]++
+				}
 			} else {
 				//else, add the integer assigned to the table to the usedTables slice.
 				// tableFill[table]++
-				fmt.Println(student, person[studentNum].Table)
-				usedTables = append(usedTables, table)
+				//if Table 1 = Table 2, then reshuffle
+				if person[studentNum].Table[0] == person[studentNum].Table2[0] {
+					person[studentNum].Table2 = append(person[studentNum].Table2, rand.Intn(33))
+					fmt.Println(person[studentNum])
+					tableFill[table]++
+				} else {
+					fmt.Println(person[studentNum])
+					usedTables = append(usedTables, table)
+				}
 			}
 		}
 	}
-
 	// fmt.Println(person)
 	// fmt.Println(usedTables)
 }
