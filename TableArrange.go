@@ -11,16 +11,26 @@ import (
 	"time"
 )
 
-func main() {
-	//Person describes the student and their tables numbers
-	type Person struct {
-		Firstname string
-		Lastname  string
-		Table     []int
-		Table2    []int
-		Table3    []int
-	}
+//Person describes the student and their tables numbers
+type Person struct {
+	Firstname string
+	Lastname  string
+	Table     []int
+	Table2    []int
+	Table3    []int
+}
 
+func replaceTable2(person []Person, studentNum int) {
+	person[studentNum].Table2 = append(person[studentNum].Table2, rand.Intn(32))
+	//gets rid of first element in array
+	person[studentNum].Table2 = append(person[studentNum].Table2[:0], person[studentNum].Table2[1:]...)
+}
+func replaceTable3(person []Person, studentNum int) {
+	person[studentNum].Table3 = append(person[studentNum].Table3, rand.Intn(32))
+	person[studentNum].Table3 = append(person[studentNum].Table3[:0], person[studentNum].Table3[1:]...)
+}
+
+func main() {
 	//empty tables
 	tableFill := []int{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 	//used table array
@@ -55,6 +65,7 @@ func main() {
 		table++
 		table2++
 		table3++
+		//appends the variable to the array
 		person[studentNum].Table = append(person[studentNum].Table, table)
 		person[studentNum].Table2 = append(person[studentNum].Table2, table2)
 		person[studentNum].Table3 = append(person[studentNum].Table3, table3)
@@ -66,44 +77,40 @@ func main() {
 			if tableFill[table] < 9 {
 				//if any of the tables equal eachother, then create a new table
 				if person[studentNum].Table[0] == person[studentNum].Table2[0] {
-					person[studentNum].Table2 = append(person[studentNum].Table2, rand.Intn(32))
-					//gets rid of first element in array
-					person[studentNum].Table2 = append(person[studentNum].Table2[:0], person[studentNum].Table2[1:]...)
+					replaceTable2(person, studentNum)
 
 				} else if person[studentNum].Table[0] == person[studentNum].Table3[0] {
-					person[studentNum].Table3 = append(person[studentNum].Table3, rand.Intn(32))
-					person[studentNum].Table3 = append(person[studentNum].Table3[:0], person[studentNum].Table3[1:]...)
+					replaceTable3(person, studentNum)
 
 				} else if person[studentNum].Table2[0] == person[studentNum].Table3[0] {
-					person[studentNum].Table3 = append(person[studentNum].Table3, rand.Intn(32))
-					person[studentNum].Table3 = append(person[studentNum].Table3[:0], person[studentNum].Table3[1:]...)
+					replaceTable3(person, studentNum)
 
 				} else if person[studentNum].Table[0] == 32 || person[studentNum].Table2[0] == 32 || person[studentNum].Table3[0] == 32 {
 					//if the number generated is 32 (Kitchen Crew Table), then print KC
 					fmt.Println(person[studentNum], "KC")
 					tableFill[table]++
+
 				} else {
 					fmt.Println(person[studentNum])
 					tableFill[table]++
 				}
 			} else {
 				if person[studentNum].Table[0] == person[studentNum].Table2[0] {
-					person[studentNum].Table2 = append(person[studentNum].Table2, rand.Intn(32))
-					person[studentNum].Table2 = append(person[studentNum].Table2[:0], person[studentNum].Table2[1:]...)
+					replaceTable2(person, studentNum)
 
 				} else if person[studentNum].Table[0] == person[studentNum].Table3[0] {
-					person[studentNum].Table3 = append(person[studentNum].Table3, rand.Intn(32))
-					person[studentNum].Table3 = append(person[studentNum].Table3[:0], person[studentNum].Table3[1:]...)
+					replaceTable3(person, studentNum)
 
 				} else if person[studentNum].Table2[0] == person[studentNum].Table3[0] {
-					person[studentNum].Table3 = append(person[studentNum].Table3, rand.Intn(32))
-					person[studentNum].Table3 = append(person[studentNum].Table3[:0], person[studentNum].Table3[1:]...)
+					replaceTable3(person, studentNum)
 
 				} else if person[studentNum].Table[0] == 32 || person[studentNum].Table2[0] == 32 || person[studentNum].Table3[0] == 32 {
 					fmt.Println(person[studentNum], "KC")
 					tableFill[table]++
+
 				} else {
 					fmt.Println(person[studentNum])
+					//adds to usedTables array
 					usedTables = append(usedTables, table)
 				}
 			}
@@ -111,39 +118,35 @@ func main() {
 			//if the table is not the Kitchen Crew Table, repeat the same process by checking each table
 			if tableFill[table] < 9 {
 				if person[studentNum].Table[0] == person[studentNum].Table2[0] {
-					person[studentNum].Table2 = append(person[studentNum].Table2, rand.Intn(32))
-					person[studentNum].Table2 = append(person[studentNum].Table2[:0], person[studentNum].Table2[1:]...)
+					replaceTable2(person, studentNum)
 
 				} else if person[studentNum].Table[0] == person[studentNum].Table3[0] {
-					person[studentNum].Table3 = append(person[studentNum].Table3, rand.Intn(32))
-					person[studentNum].Table3 = append(person[studentNum].Table3[:0], person[studentNum].Table3[1:]...)
+					replaceTable3(person, studentNum)
 
 				} else if person[studentNum].Table2[0] == person[studentNum].Table3[0] {
-					person[studentNum].Table3 = append(person[studentNum].Table3, rand.Intn(32))
-					person[studentNum].Table3 = append(person[studentNum].Table3[:0], person[studentNum].Table3[1:]...)
+					replaceTable3(person, studentNum)
 
 				} else if person[studentNum].Table[0] == 32 || person[studentNum].Table2[0] == 32 || person[studentNum].Table3[0] == 32 {
 					fmt.Println(person[studentNum], "KC")
 					tableFill[table]++
+
 				} else {
 					fmt.Println(person[studentNum])
 					tableFill[table]++
 				}
 			} else {
 				if person[studentNum].Table[0] == person[studentNum].Table2[0] {
-					person[studentNum].Table2 = append(person[studentNum].Table2, rand.Intn(32))
-					person[studentNum].Table2 = append(person[studentNum].Table2[:0], person[studentNum].Table2[1:]...)
+					replaceTable2(person, studentNum)
 
 				} else if person[studentNum].Table[0] == person[studentNum].Table3[0] {
-					person[studentNum].Table3 = append(person[studentNum].Table3, rand.Intn(32))
-					person[studentNum].Table3 = append(person[studentNum].Table3[:0], person[studentNum].Table3[1:]...)
+					replaceTable3(person, studentNum)
 
 				} else if person[studentNum].Table2[0] == person[studentNum].Table3[0] {
-					person[studentNum].Table3 = append(person[studentNum].Table3, rand.Intn(32))
-					person[studentNum].Table3 = append(person[studentNum].Table3[:0], person[studentNum].Table3[1:]...)
+					replaceTable3(person, studentNum)
+
 				} else {
+					//one extra place at each table to make waiters
 					fmt.Println(person[studentNum], "Waiter")
-					//adds to usedTables array
 					usedTables = append(usedTables, table)
 				}
 			}
