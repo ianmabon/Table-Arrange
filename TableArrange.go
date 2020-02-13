@@ -47,6 +47,7 @@ func main() {
 		} else if error != nil {
 			log.Fatal(error)
 		}
+		//append the seating list to person
 		person = append(person, Person{
 			Firstname: line[0],
 			Lastname:  line[1],
