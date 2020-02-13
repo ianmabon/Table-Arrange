@@ -12,6 +12,7 @@ import (
 )
 
 func main() {
+	//Person describes the student and their tables numbers
 	type Person struct {
 		Firstname string
 		Lastname  string
@@ -62,9 +63,8 @@ func main() {
 			fmt.Println(student)
 		}
 		if table == 32 {
-			//if the group is full, next table
 			if tableFill[table] < 9 {
-				//if Table 1 = Table 2, then reshuffle
+				//if any of the tables equal eachother, then create a new table
 				if person[studentNum].Table[0] == person[studentNum].Table2[0] {
 					person[studentNum].Table2 = append(person[studentNum].Table2, rand.Intn(32))
 					//gets rid of first element in array
@@ -79,6 +79,7 @@ func main() {
 					person[studentNum].Table3 = append(person[studentNum].Table3[:0], person[studentNum].Table3[1:]...)
 
 				} else if person[studentNum].Table[0] == 32 || person[studentNum].Table2[0] == 32 || person[studentNum].Table3[0] == 32 {
+					//if the number generated is 32 (Kitchen Crew Table), then print KC
 					fmt.Println(person[studentNum], "KC")
 					tableFill[table]++
 				} else {
@@ -86,12 +87,9 @@ func main() {
 					tableFill[table]++
 				}
 			} else {
-				//if Table 1 = Table 2, then reshuffle
 				if person[studentNum].Table[0] == person[studentNum].Table2[0] {
 					person[studentNum].Table2 = append(person[studentNum].Table2, rand.Intn(32))
-					//gets rid of first element in array
 					person[studentNum].Table2 = append(person[studentNum].Table2[:0], person[studentNum].Table2[1:]...)
-					//if table 2 = 32, which is the kitchen crew table, print KC
 
 				} else if person[studentNum].Table[0] == person[studentNum].Table3[0] {
 					person[studentNum].Table3 = append(person[studentNum].Table3, rand.Intn(32))
@@ -110,10 +108,10 @@ func main() {
 				}
 			}
 		} else {
+			//if the table is not the Kitchen Crew Table, repeat the same process by checking each table
 			if tableFill[table] < 9 {
 				if person[studentNum].Table[0] == person[studentNum].Table2[0] {
 					person[studentNum].Table2 = append(person[studentNum].Table2, rand.Intn(32))
-					//gets rid of first element in array
 					person[studentNum].Table2 = append(person[studentNum].Table2[:0], person[studentNum].Table2[1:]...)
 
 				} else if person[studentNum].Table[0] == person[studentNum].Table3[0] {
@@ -134,7 +132,6 @@ func main() {
 			} else {
 				if person[studentNum].Table[0] == person[studentNum].Table2[0] {
 					person[studentNum].Table2 = append(person[studentNum].Table2, rand.Intn(32))
-					//gets rid of first element in array
 					person[studentNum].Table2 = append(person[studentNum].Table2[:0], person[studentNum].Table2[1:]...)
 
 				} else if person[studentNum].Table[0] == person[studentNum].Table3[0] {
@@ -146,11 +143,10 @@ func main() {
 					person[studentNum].Table3 = append(person[studentNum].Table3[:0], person[studentNum].Table3[1:]...)
 				} else {
 					fmt.Println(person[studentNum], "Waiter")
+					//adds to usedTables array
 					usedTables = append(usedTables, table)
 				}
 			}
 		}
 	}
 }
-
-// fmt.Println(person)
